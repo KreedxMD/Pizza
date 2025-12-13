@@ -1,1 +1,45 @@
-<h1 hello </h1>
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzaria do Kevyn</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+    header { background: #c62828; color: #fff; padding: 20px; text-align: center; }
+    .container { padding: 15px; }
+    .card { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    button { padding: 10px; border: none; border-radius: 6px; cursor: pointer; }
+    .btn { background: #2e7d32; color: #fff; width: 100%; }
+    .pizza { display: flex; justify-content: space-between; align-items: center; }
+    .total { font-size: 18px; font-weight: bold; }
+    a { text-decoration: none; }
+  </style>
+</head>
+<body><header>
+  🍕 <strong>Pizzaria do Kevyn</strong><br>
+  Peça sua pizza online
+</header><div class="container">  <div class="card">
+    <h2>Cardápio</h2>
+    <div class="pizza">
+      <div>
+        <strong>Pizza Grande</strong><br>
+        Mussarela, tomate e orégano
+      </div>
+      <div>
+        <strong>R$ 50,00</strong><br>
+        <button onclick="add()">Adicionar</button>
+      </div>
+    </div>
+  </div>  <div class="card">
+    <h2>Carrinho</h2>
+    <p class="total">Total: R$ <span id="total">0</span>,00</p>
+    <a href="checkout.html"><button class="btn">Finalizar Pedido</button></a>
+  </div></div><script>
+  let total = 0;
+  function add() {
+    total += 50;
+    document.getElementById('total').innerText = total;
+    localStorage.setItem('total', total);
+  }
+</script></body>
+</html>
