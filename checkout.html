@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finalizar Pedido</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; }
+    header { background: #c62828; color: white; padding: 20px; text-align: center; }
+    .container { padding: 15px; }
+    .card { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    input { width: 100%; padding: 10px; margin-bottom: 10px; }
+    button { width: 100%; padding: 12px; border: none; border-radius: 6px; cursor: pointer; }
+    .confirm { background: #2e7d32; color: white; }
+    .pix { background: #0277bd; color: white; }
+  </style>
+</head>
+<body>
+
+<header>
+  📦 Finalizar Pedido
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h3>Endereço de Entrega</h3>
+    <input id="rua" placeholder="Nome da rua">
+    <input id="numero" placeholder="Número da casa">
+    <input id="bairro" placeholder="Bairro">
+  </div>
+
+  <div class="card">
+    <h3>Total a pagar</h3>
+    <p><strong>R$ <span id="total"></span>,00</strong></p>
+  </div>
+
+  <div class="card">
+    <h3>Pagamento via Pix</h3>
+    <p><strong>Chave Pix:</strong></p>
+    <p id="pix">106.833.531-95</p>
+
+    <button class="pix" onclick="copiarPix()">Copiar chave Pix</button>
+  </div>
+
+  <button class="confirm" onclick="confirmar()">Confirmar Pedido</button>
+
+</div>
+
+<script>
+  document.getElementById('total').innerText = localStorage.getItem('total') || 0;
+
+  function copiarPix() {
+    navigator.clipboard.writeText('106.833.531-95');
+    alert('Chave Pix copiada!');
+  }
+
+  function confirmar() {
+    const rua = document.getElementById('rua').value;
+    const numero = document.getElementById('numero').value;
+    const bairro = document.getElementById('bairro').value;
+    const total = localStorage.getItem('total');
+
+    if (!rua || !numero || !bairro) {
+      alert('Preencha todo o endereço!');
+      return;
+    }
+
+    const msg = `Pedido confirmado 🍕%0AEndereço: ${rua}, ${numero} - ${bairro}%0ATotal: R$ ${total},00%0A%0AEnviei o comprovante do Pix.%0AEntrega em até 20 minutos.`;
+
+    window.location.href = `https://wa.me/5569981726850?text=${msg}`;
+  }
+</script>
+
+</body>
+</html>
