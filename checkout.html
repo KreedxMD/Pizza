@@ -111,13 +111,13 @@ button:hover {
 </head>
 <body>
 
-<!-- Slideshow de fundo com imagens novas e apetitosas de salgados brasileiros -->
+<!-- Slideshow de fundo (imagens apetitosas de salgados) -->
 <div class="slideshow-container">
-    <div class="slide active" style="background-image: url('https://www.shutterstock.com/image-photo/various-brazilian-snacks-deep-fried-260nw-2297996407.jpg');"></div>
-    <div class="slide" style="background-image: url('https://blog.amigofoods.com/wp-content/uploads/2025/08/coxinha-chicken-frango.jpg');"></div>
-    <div class="slide" style="background-image: url('https://www.shutterstock.com/image-photo/mixed-brazilian-snack-food-quibe-600nw-2607065595.jpg');"></div>
-    <div class="slide" style="background-image: url('https://www.thespruceeats.com/thmb/5ftNyXO0kOOxPVU2uBHF45k0OGM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/coxinha-brazilian-chicken-croquettes-3029668-Hero-5b7d5f9546e0fb00252abc5f.jpg');"></div>
-    <div class="slide" style="background-image: url('https://blog.amigofoods.com/wp-content/uploads/2025/08/coxinha-filling.jpg');"></div>
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
+    <div class="slide" style="background-image: url('https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg');"></div>
+    <div class="slide" style="background-image: url('https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg');"></div>
+    <div class="slide" style="background-image: url('https://media.istockphoto.com/id/1092130320/photo/mixed-brazilian-snack.jpg?s=612x612');"></div>
     <div class="slide" style="background-image: url('https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg');"></div>
 </div>
 
@@ -166,17 +166,16 @@ function whatsapp() {
         return;
     }
 
-    // Lista de itens numerada
-    let itensTexto = '';
-    cart.forEach((item, index) => {
-        itensTexto += `\( {index + 1}. \){item.nome} → R$ ${item.preco},00%0A`;
-    });
+    // Lista de itens usando map + join (mais seguro e limpo)
+    const itensTexto = cart.map((item, index) => 
+        `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`
+    ).join('%0A');
 
-    // Mensagem com quebras de linha corretas (%0A dentro das variáveis)
+    // Mensagem com tudo correto (usei - em vez de seta para evitar bugs)
     const msg = 
 `Olá! Gostaria de fazer um pedido 😊%0A%0A` +
 `📍 *Endereço de entrega:*%0A\( {rua}%0A \){numero}%0A%0A` +
-`🛒 *Meu pedido:*%0A${itensTexto}%0A` +
+`🛒 *Meu pedido:*%0A${itensTexto}%0A%0A` +
 `💰 *Total:* R$ ${total},00%0A%0A` +
 `Vou fazer o pagamento por Pix (chave: 106.833.531-95).%0AAssim que pagar, envio o comprovante aqui!%0A%0A` +
 `Obrigado desde já! 🍴`;
