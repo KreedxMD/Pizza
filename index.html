@@ -1,45 +1,46 @@
 <!DOCTYPE html><html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pizzaria do Kevyn</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
-    header { background: #c62828; color: #fff; padding: 20px; text-align: center; }
-    .container { padding: 15px; }
-    .card { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-    button { padding: 10px; border: none; border-radius: 6px; cursor: pointer; }
-    .btn { background: #2e7d32; color: #fff; width: 100%; }
-    .pizza { display: flex; justify-content: space-between; align-items: center; }
-    .total { font-size: 18px; font-weight: bold; }
-    a { text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzaria do Kevyn</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#c62828;color:#fff;padding:20px;text-align:center}
+.container{padding:15px}
+.card{background:#fff;padding:15px;border-radius:8px;margin-bottom:15px}
+.item{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+button{padding:8px 12px;border:none;border-radius:6px;cursor:pointer}
+.add{background:#2e7d32;color:#fff}
+.btn{background:#1565c0;color:#fff;width:100%;padding:12px}
+.total{font-size:18px;font-weight:bold}
+</style>
 </head>
-<body><header>
-  🍕 <strong>Pizzaria do Kevyn</strong><br>
-  Peça sua pizza online
-</header><div class="container">  <div class="card">
-    <h2>Cardápio</h2>
-    <div class="pizza">
-      <div>
-        <strong>Pizza Grande</strong><br>
-        Mussarela, tomate e orégano
-      </div>
-      <div>
-        <strong>R$ 50,00</strong><br>
-        <button onclick="add()">Adicionar</button>
-      </div>
-    </div>
-  </div>  <div class="card">
-    <h2>Carrinho</h2>
-    <p class="total">Total: R$ <span id="total">0</span>,00</p>
-    <a href="checkout.html"><button class="btn">Finalizar Pedido</button></a>
-  </div></div><script>
-  let total = 0;
-  function add() {
-    total += 50;
-    document.getElementById('total').innerText = total;
-    localStorage.setItem('total', total);
-  }
+<body><header>🍕 <strong>Pizzaria do Kevyn</strong><br>Peça online</header><div class="container"><div class="card">
+<h2>Cardápio</h2><div class="item"><span>50 Salgadinhos</span><span>R$20 <button class="add" onclick="add('50 Salgadinhos',20)">+</button></span></div>
+<div class="item"><span>100 Salgadinhos</span><span>R$50 <button class="add" onclick="add('100 Salgadinhos',50)">+</button></span></div>
+<div class="item"><span>200 Salgadinhos + Coca</span><span>R$80 <button class="add" onclick="add('200 Salgadinhos + Coca',80)">+</button></span></div></div><div class="card">
+<h2>Carrinho</h2>
+<div id="lista"></div>
+<p class="total">Total: R$ <span id="total">0</span>,00</p>
+<a href="checkout.html"><button class="btn">Finalizar Pedido</button></a>
+</div></div><script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let total = cart.reduce((s,i)=>s+i.preco,0);
+update();
+
+function add(nome,preco){
+ cart.push({nome,preco});
+ localStorage.setItem('cart',JSON.stringify(cart));
+ total+=preco;
+ update();
+}
+
+function update(){
+ document.getElementById('total').innerText=total;
+ localStorage.setItem('total',total);
+ const lista=document.getElementById('lista');
+ lista.innerHTML='';
+ cart.forEach(i=>{lista.innerHTML+=`<p>• ${i.nome} - R$${i.preco}</p>`});
+}
 </script></body>
 </html>
