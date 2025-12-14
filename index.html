@@ -30,7 +30,7 @@ body {
 }
 .slide.active { opacity: 1; }
 
-/* Overlay escuro para legibilidade */
+/* Overlay */
 body::before {
     content: '';
     position: fixed;
@@ -103,7 +103,7 @@ button {
     margin: 15px 0;
 }
 
-/* Galeria de destaques no final */
+/* Galeria no final */
 .gallery-container {
     overflow: hidden;
     border-radius: 12px;
@@ -111,7 +111,7 @@ button {
 }
 .gallery {
     display: flex;
-    width: 200%; /* Duplicado para loop infinito */
+    width: 200%;
     animation: slideGallery 25s linear infinite;
 }
 .gallery img {
@@ -130,14 +130,13 @@ h2 { margin-top: 0; color: #c62828; }
 </head>
 <body>
 
-<!-- Slideshow de fundo -->
 <div class="slideshow-container">
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1606912015428-2d5f99a284f7?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg');"></div>
     <div class="slide" style="background-image: url('https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg');"></div>
     <div class="slide" style="background-image: url('https://media.istockphoto.com/id/1092130320/photo/mixed-brazilian-snack.jpg?s=612x612');"></div>
+    <div class="slide" style="background-image: url('https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg');"></div>
 </div>
 
 <header>
@@ -163,20 +162,18 @@ h2 { margin-top: 0; color: #c62828; }
         <a href="checkout.html"><button class="btn">Finalizar Pedido ➜</button></a>
     </div>
 
-    <!-- Galeria de destaques -->
     <div class="card">
         <h2>😋 Nossos Salgados Deliciosos</h2>
         <div class="gallery-container">
             <div class="gallery">
                 <img src="https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Salgados">
-                <img src="https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Coxinha">
-                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix de salgados">
-                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa de salgados">
-                <!-- Duplicadas para loop infinito suave -->
+                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix">
+                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa">
+                <img src="https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg" alt="Coxinha">
                 <img src="https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Salgados">
-                <img src="https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Coxinha">
-                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix de salgados">
-                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa de salgados">
+                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix">
+                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa">
+                <img src="https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg" alt="Coxinha">
             </div>
         </div>
     </div>
@@ -214,7 +211,7 @@ function limparCarrinho(e) {
     update();
 }
 
-// Slideshow automático do fundo
+// Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function nextSlide() {
@@ -222,7 +219,7 @@ function nextSlide() {
     currentSlide = (currentSlide + 1) % slides.length;
     slides[currentSlide].classList.add('active');
 }
-setInterval(nextSlide, 8000); // Muda a cada 8 segundos
+setInterval(nextSlide, 8000);
 </script>
 </body>
 </html>
