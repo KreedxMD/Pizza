@@ -111,7 +111,7 @@ button:hover {
 </head>
 <body>
 
-<!-- Slideshow de fundo (mesmas imagens do index) -->
+<!-- Slideshow de fundo -->
 <div class="slideshow-container">
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
@@ -162,26 +162,23 @@ function whatsapp() {
     }
 
     if (cart.length === 0 || total == 0) {
-        alert('⚠️ Seu carrinho está vazio. Volte e adicione salgados deliciosos!');
+        alert('⚠️ Seu carrinho está vazio. Volte e adicione itens!');
         return;
     }
 
-    // Lista numerada dos itens
+    // Itens numerados
     let itensTexto = cart.map((item, index) => 
         `\( {index + 1}. \){item.nome} → R$ ${item.preco},00`
     ).join('%0A');
 
-    // Mensagem profissional e organizada
+    // Mensagem em primeira pessoa (como se o cliente estivesse falando)
     const msg = 
-`*🍴 Novo Pedido - Centro de Salgado Deliciosos* %0A%0A` +
-`📍 *Endereço de entrega:* %0A   \( {rua}%0A \){numero}%0A%0A` +
-`🛒 *Itens do pedido:* %0A${itensTexto}%0A%0A` +
-`💰 *Valor total:* R$ ${total},00%0A%0A` +
-`💳 *Forma de pagamento:* Pix%0A` +
-`🔑 *Chave Pix:* 106.833.531-95%0A%0A` +
-`🙏 Após o pagamento, por favor envie o comprovante aqui para confirmarmos seu pedido rapidinho!%0A%0A` +
-`🚀 Entrega rápida e salgados fresquinhos garantidos!%0A` +
-`Muito obrigado pela preferência! 😊`;
+`Olá! Gostaria de fazer um pedido 😊%0A%0A` +
+`📍 *Endereço de entrega:*%0A\( {rua}%0A \){numero}%0A%0A` +
+`🛒 *Meu pedido:*%0A${itensTexto}%0A%0A` +
+`💰 *Total:* R$ ${total},00%0A%0A` +
+`Vou fazer o pagamento por Pix (chave: 106.833.531-95).%0AAssim que pagar, envio o comprovante aqui!%0A%0A` +
+`Obrigado desde já! 🍴`;
 
     window.location.href = `https://wa.me/5569981726850?text=${msg}`;
 }
