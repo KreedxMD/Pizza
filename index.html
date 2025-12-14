@@ -23,7 +23,7 @@ button{padding:8px 12px;border:none;border-radius:6px;cursor:pointer}
 <div id="lista"></div>
 <p class="total">Total: R$ <span id="total">0</span>,00</p>
 <a href="checkout.html"><button class="btn">Finalizar Pedido</button>
-<button id="resetCart" title="Limpar carrinho" style="margin-top:10px;background:#eee;border-radius:50%;width:40px;height:40px;font-size:18px" onclick="resetCart()">🗑️</button></button></a>
+<button id="resetCart" title="Limpar carrinho" onclick="event.stopPropagation(); resetCart();" style="margin-top:10px;background:#eee;border-radius:50%;width:40px;height:40px;font-size:18px;position:relative;z-index:5">🗑️</button></button></a>
 </div></div><script>
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let total = cart.reduce((s,i)=>s+i.preco,0);
