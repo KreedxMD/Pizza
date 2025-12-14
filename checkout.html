@@ -166,16 +166,17 @@ function whatsapp() {
         return;
     }
 
-    // Itens numerados
-    let itensTexto = cart.map((item, index) => 
-        `\( {index + 1}. \){item.nome} → R$ ${item.preco},00`
-    ).join('%0A');
+    // Monta a lista de itens corretamente (1. Nome do item → R$ preço)
+    let itensTexto = '';
+    cart.forEach((item, index) => {
+        itensTexto += `\( {index + 1}. \){item.nome} → R$ ${item.preco},00%0A`;
+    });
 
-    // Mensagem em primeira pessoa (como se o cliente estivesse falando)
+    // Mensagem final – limpa, natural e com endereço/itens corretos
     const msg = 
 `Olá! Gostaria de fazer um pedido 😊%0A%0A` +
 `📍 *Endereço de entrega:*%0A\( {rua}%0A \){numero}%0A%0A` +
-`🛒 *Meu pedido:*%0A${itensTexto}%0A%0A` +
+`🛒 *Meu pedido:*%0A${itensTexto}%0A` +
 `💰 *Total:* R$ ${total},00%0A%0A` +
 `Vou fazer o pagamento por Pix (chave: 106.833.531-95).%0AAssim que pagar, envio o comprovante aqui!%0A%0A` +
 `Obrigado desde já! 🍴`;
