@@ -123,8 +123,23 @@ button:hover { opacity: 0.9; }
 </div>
 
 <script>
-const cart = JSON.parse(localStorage.getItem('cart')) || [];
-const total = localStorage.getItem('total') || 0;
+// Garante que o cart seja lido corretamente (evita bug de undefined)
+let cart = [];
+const storedCart = localStorage.getItem('cart');
+if (storedCart) {
+    try {
+        cart = JSON.parse(storedCart);
+    } catch (e) {
+        cart = [];
+    }
+}
+
+let total = 0;
+const storedTotal = localStorage.getItem('total');
+if (storedTotal) {
+    total = parseFloat(storedTotal) || 0;
+}
+
 document.getElementById('total').innerText = total;
 
 function copiar() {
@@ -141,15 +156,17 @@ function whatsapp() {
         return;
     }
 
-    if (cart.length === 0 || total == 0) {
+    if (cart.length === 0 || total === 0) {
         alert('⚠️ Seu carrinho está vazio. Adicione itens!');
         return;
     }
 
-    const itensTexto = cart.map((item, index) => 
-        `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`
-    ).join('\n');
+    // Monta a lista de itens com nome e preço reais
+    const itensTexto = cart.map((item, index) => {
+        return `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`;
+    }).join('\n');
 
+    // Mensagem final
     const mensagem = `Olá! Gostaria de fazer um pedido 😊
 
 📍 *Endereço de entrega:*
@@ -166,6 +183,7 @@ Assim que pagar, envio o comprovante aqui!
 
 Obrigado desde já! 🍴`;
 
+    // Codifica corretamente para o WhatsApp
     const encodedMsg = encodeURIComponent(mensagem);
     window.location.href = `https://wa.me/5569981726850?text=${encodedMsg}`;
 }
