@@ -31,7 +31,7 @@ body {
 }
 .slide.active { opacity: 1; }
 
-/* Overlay para legibilidade */
+/* Overlay */
 body::before {
     content: '';
     position: fixed;
@@ -50,16 +50,8 @@ body::before {
     text-align: center;
 }
 
-h2 {
-    color: #c62828;
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-h3 {
-    color: #d32f2f;
-    margin: 25px 0 10px;
-}
+h2 { color: #c62828; font-size: 26px; margin-bottom: 20px; }
+h3 { color: #d32f2f; margin: 25px 0 10px; }
 
 input {
     width: 100%;
@@ -80,13 +72,9 @@ button {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-}
+button:hover { opacity: 0.9; }
 
 .pix {
     background: #e8f5e8;
@@ -97,21 +85,13 @@ button:hover {
     border: 2px dashed #4caf50;
 }
 
-.pix strong {
-    color: #2e7d32;
-    font-size: 20px;
-}
+.pix strong { color: #2e7d32; font-size: 20px; }
 
-#total {
-    font-size: 28px;
-    font-weight: bold;
-    color: #c62828;
-}
+#total { font-size: 28px; font-weight: bold; color: #c62828; }
 </style>
 </head>
 <body>
 
-<!-- Slideshow de fundo com salgados apetitosos -->
 <div class="slideshow-container">
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
@@ -157,21 +137,19 @@ function whatsapp() {
     const numero = document.getElementById('numero').value.trim();
 
     if (!rua || !numero) {
-        alert('⚠️ Por favor, preencha o endereço completo para continuar.');
+        alert('⚠️ Por favor, preencha o endereço completo.');
         return;
     }
 
     if (cart.length === 0 || total == 0) {
-        alert('⚠️ Seu carrinho está vazio. Volte e adicione itens!');
+        alert('⚠️ Seu carrinho está vazio. Adicione itens!');
         return;
     }
 
-    // Lista de itens numerados
     const itensTexto = cart.map((item, index) => 
         `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`
     ).join('\n');
 
-    // Mensagem usando template literal (crase) para interpolação perfeita
     const mensagem = `Olá! Gostaria de fazer um pedido 😊
 
 📍 *Endereço de entrega:*
@@ -188,13 +166,11 @@ Assim que pagar, envio o comprovante aqui!
 
 Obrigado desde já! 🍴`;
 
-    // Codifica toda a mensagem para URL (resolve acentos, espaços e quebras de linha)
     const encodedMsg = encodeURIComponent(mensagem);
-
     window.location.href = `https://wa.me/5569981726850?text=${encodedMsg}`;
 }
 
-// Slideshow automático
+// Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function nextSlide() {
