@@ -111,7 +111,7 @@ button:hover {
 </head>
 <body>
 
-<!-- Slideshow de fundo (imagens apetitosas de salgados) -->
+<!-- Slideshow de fundo com salgados apetitosos -->
 <div class="slideshow-container">
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
@@ -166,21 +166,32 @@ function whatsapp() {
         return;
     }
 
-    // Lista de itens usando map + join (mais seguro e limpo)
+    // Lista de itens numerados
     const itensTexto = cart.map((item, index) => 
         `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`
-    ).join('%0A');
+    ).join('\n');
 
-    // Mensagem com tudo correto (usei - em vez de seta para evitar bugs)
-    const msg = 
-`Olá! Gostaria de fazer um pedido 😊%0A%0A` +
-`📍 *Endereço de entrega:*%0A\( {rua}%0A \){numero}%0A%0A` +
-`🛒 *Meu pedido:*%0A${itensTexto}%0A%0A` +
-`💰 *Total:* R$ ${total},00%0A%0A` +
-`Vou fazer o pagamento por Pix (chave: 106.833.531-95).%0AAssim que pagar, envio o comprovante aqui!%0A%0A` +
-`Obrigado desde já! 🍴`;
+    // Mensagem usando template literal (crase) para interpolação perfeita
+    const mensagem = `Olá! Gostaria de fazer um pedido 😊
 
-    window.location.href = `https://wa.me/5569981726850?text=${msg}`;
+📍 *Endereço de entrega:*
+${rua}
+${numero}
+
+🛒 *Meu pedido:*
+${itensTexto}
+
+💰 *Total:* R$ ${total},00
+
+Vou fazer o pagamento por Pix (chave: 106.833.531-95).
+Assim que pagar, envio o comprovante aqui!
+
+Obrigado desde já! 🍴`;
+
+    // Codifica toda a mensagem para URL (resolve acentos, espaços e quebras de linha)
+    const encodedMsg = encodeURIComponent(mensagem);
+
+    window.location.href = `https://wa.me/5569981726850?text=${encodedMsg}`;
 }
 
 // Slideshow automático
