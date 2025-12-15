@@ -44,7 +44,7 @@ button:hover { opacity: 0.9; }
 
     <div class="pix">
         <strong>💳 Pagamento via Pix</strong><br><br>
-        <strong>Chave: 03527525211</strong><br><br>
+        <strong>Chave: 106.833.531-95</strong><br><br>
         <button onclick="copiar()" style="background:#4caf50; color:white;">📋 Copiar Chave Pix</button>
     </div>
 
@@ -72,7 +72,7 @@ if (storedTotal) total = parseFloat(storedTotal) || 0;
 document.getElementById('total').innerText = total;
 
 function copiar() {
-    navigator.clipboard.writeText('03527525211');
+    navigator.clipboard.writeText('106.833.531-95');
     alert('✅ Chave Pix copiada!');
 }
 
@@ -103,11 +103,12 @@ ${itens}
 
 Total a pagar: R$ ${total},00
 
-Vou fazer o Pix na chave 03527525211 e envio o comprovante aqui assim que pagar.
+Vou fazer o Pix na chave 106.833.531-95 e envio o comprovante aqui assim que pagar.
 
 Obrigado!`;
 
     const encoded = encodeURIComponent(mensagem);
+    // Novo número: 69981726850
     window.location.href = `https://wa.me/5569981726850?text=${encoded}`;
 }
 
