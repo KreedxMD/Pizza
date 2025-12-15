@@ -123,16 +123,19 @@ button:hover { opacity: 0.9; }
 </div>
 
 <script>
-// Leitura segura do carrinho e total do localStorage
+// Leitura super segura do carrinho e total
 let cart = [];
 let total = 0;
 
 const storedCart = localStorage.getItem('cart');
 if (storedCart) {
     try {
-        cart = JSON.parse(storedCart);
-        if (!Array.isArray(cart)) cart = [];
+        const parsed = JSON.parse(storedCart);
+        if (Array.isArray(parsed)) {
+            cart = parsed;
+        }
     } catch (e) {
+        console.error('Erro ao ler carrinho:', e);
         cart = [];
     }
 }
@@ -142,7 +145,7 @@ if (storedTotal) {
     total = parseFloat(storedTotal) || 0;
 }
 
-// Atualiza o total na tela
+// Atualiza total na tela
 document.getElementById('total').innerText = total;
 
 function copiar() {
@@ -160,16 +163,24 @@ function whatsapp() {
     }
 
     if (cart.length === 0 || total === 0) {
-        alert('⚠️ Seu carrinho está vazio. Adicione itens no cardápio!');
+        alert('⚠️ Seu carrinho está vazio. Volte e adicione itens no cardápio!');
         return;
     }
 
-    // Monta os itens exatamente como foram adicionados no site
-    const itensTexto = cart.map((item, index) => {
-        return `\( {index + 1}. \){item.nome} - R$ ${item.preco},00`;
-    }).join('\n');
+    // Monta os itens exatamente como escolhidos no site
+    let itensTexto = '';
+    cart.forEach((item, index) => {
+        if (item && item.nome && item.preco !== undefined) {
+            itensTexto += `\( {index + 1}. \){item.nome} - R$ ${item.preco},00\n`;
+        }
+    });
 
-    // Mensagem completa
+    if (itensTexto === '') {
+        alert('Erro ao ler os itens do carrinho. Tente adicionar novamente.');
+        return;
+    }
+
+    // Mensagem completa com tudo certo
     const mensagem = `Olá! Gostaria de fazer um pedido 😊
 
 📍 *Endereço de entrega:*
@@ -186,9 +197,7 @@ Assim que pagar, envio o comprovante aqui!
 
 Obrigado desde já! 🍴`;
 
-    // Codifica para o WhatsApp funcionar perfeitamente
     const encodedMsg = encodeURIComponent(mensagem);
-
     window.location.href = `https://wa.me/5569981726850?text=${encodedMsg}`;
 }
 
