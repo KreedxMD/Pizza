@@ -5,88 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Confirmar Pedido - Centro de Salgado Deliciosos</title>
 <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 15px;
-    min-height: 100vh;
-    position: relative;
-    background: #000;
-    color: #333;
-}
-
-/* Slideshow de fundo */
-.slideshow-container {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -2;
-}
-.slide {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
+body {font-family: Arial, sans-serif;margin: 0;padding: 15px;min-height: 100vh;position: relative;background: #000;color: #333;}
+.slideshow-container {position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: -2;}
+.slide {position: absolute;top: 0;left: 0;width: 100%;height: 100%;background-size: cover;background-position: center;opacity: 0;transition: opacity 1.5s ease-in-out;}
 .slide.active { opacity: 1; }
-
-/* Overlay */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: -1;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 16px;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    text-align: center;
-}
-
+body::before {content: '';position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0, 0, 0, 0.45);z-index: -1;}
+.card {background: rgba(255, 255, 255, 0.95);padding: 30px;border-radius: 16px;max-width: 600px;margin: 20px auto;box-shadow: 0 8px 20px rgba(0,0,0,0.3);text-align: center;}
 h2 { color: #c62828; font-size: 26px; margin-bottom: 20px; }
 h3 { color: #d32f2f; margin: 25px 0 10px; }
-
-input {
-    width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
+input {width: 100%;padding: 14px;margin-top: 10px;border-radius: 10px;border: 1px solid #ccc;font-size: 16px;box-sizing: border-box;}
+button {width: 100%;padding: 14px;margin-top: 20px;border: none;border-radius: 10px;font-size: 18px;font-weight: bold;cursor: pointer;}
 button:hover { opacity: 0.9; }
-
-.pix {
-    background: #e8f5e8;
-    padding: 20px;
-    margin: 25px 0;
-    border-radius: 12px;
-    font-size: 18px;
-    border: 2px dashed #4caf50;
-}
-
+.pix {background: #e8f5e8;padding: 20px;margin: 25px 0;border-radius: 12px;font-size: 18px;border: 2px dashed #4caf50;}
 .pix strong { color: #2e7d32; font-size: 20px; }
-
 #total { font-size: 28px; font-weight: bold; color: #c62828; }
 </style>
 </head>
@@ -106,14 +37,14 @@ button:hover { opacity: 0.9; }
     
     <h3>📍 Endereço de Entrega</h3>
     <input id="rua" placeholder="Rua, avenida e bairro">
-    <input id="numero" placeholder="Número, complemento (ex: apto 101)">
+    <input id="numero" placeholder="Número, complemento">
 
     <h3>💰 Valor Total</h3>
     <p>R$ <span id="total">0</span>,00</p>
 
     <div class="pix">
         <strong>💳 Pagamento via Pix</strong><br><br>
-        <strong>Chave: 106.833.531-95</strong><br><br>
+        <strong>Chave: 03527525211</strong><br><br>
         <button onclick="copiar()" style="background:#4caf50; color:white;">📋 Copiar Chave Pix</button>
     </div>
 
@@ -123,7 +54,7 @@ button:hover { opacity: 0.9; }
 </div>
 
 <script>
-// Leitura super segura do carrinho e total
+// Leitura segura do carrinho
 let cart = [];
 let total = 0;
 
@@ -131,26 +62,18 @@ const storedCart = localStorage.getItem('cart');
 if (storedCart) {
     try {
         const parsed = JSON.parse(storedCart);
-        if (Array.isArray(parsed)) {
-            cart = parsed;
-        }
-    } catch (e) {
-        console.error('Erro ao ler carrinho:', e);
-        cart = [];
-    }
+        if (Array.isArray(parsed)) cart = parsed;
+    } catch (e) { cart = []; }
 }
 
 const storedTotal = localStorage.getItem('total');
-if (storedTotal) {
-    total = parseFloat(storedTotal) || 0;
-}
+if (storedTotal) total = parseFloat(storedTotal) || 0;
 
-// Atualiza total na tela
 document.getElementById('total').innerText = total;
 
 function copiar() {
-    navigator.clipboard.writeText('106.833.531-95');
-    alert('✅ Chave Pix copiada com sucesso!');
+    navigator.clipboard.writeText('03527525211');
+    alert('✅ Chave Pix copiada!');
 }
 
 function whatsapp() {
@@ -158,50 +81,36 @@ function whatsapp() {
     const numero = document.getElementById('numero').value.trim();
 
     if (!rua || !numero) {
-        alert('⚠️ Por favor, preencha o endereço completo.');
+        alert('⚠️ Preencha o endereço completo.');
         return;
     }
 
-    if (cart.length === 0 || total === 0) {
-        alert('⚠️ Seu carrinho está vazio. Volte e adicione itens no cardápio!');
+    if (cart.length === 0) {
+        alert('⚠️ Adicione itens no carrinho primeiro!');
         return;
     }
 
-    // Monta os itens exatamente como escolhidos no site
-    let itensTexto = '';
-    cart.forEach((item, index) => {
-        if (item && item.nome && item.preco !== undefined) {
-            itensTexto += `\( {index + 1}. \){item.nome} - R$ ${item.preco},00\n`;
-        }
-    });
+    const itens = cart.map((item, index) => `\( {index + 1}. \){item.nome}`).join('\n');
 
-    if (itensTexto === '') {
-        alert('Erro ao ler os itens do carrinho. Tente adicionar novamente.');
-        return;
-    }
+    const mensagem = `Olá! Quero fazer um pedido:
 
-    // Mensagem completa com tudo certo
-    const mensagem = `Olá! Gostaria de fazer um pedido 😊
-
-📍 *Endereço de entrega:*
+Endereço:
 ${rua}
 ${numero}
 
-🛒 *Meu pedido:*
-${itensTexto}
+Pedido:
+${itens}
 
-💰 *Total:* R$ ${total},00
+Total a pagar: R$ ${total},00
 
-Vou fazer o pagamento por Pix (chave: 106.833.531-95).
-Assim que pagar, envio o comprovante aqui!
+Vou fazer o Pix na chave 03527525211 e envio o comprovante aqui assim que pagar.
 
-Obrigado desde já! 🍴`;
+Obrigado!`;
 
-    const encodedMsg = encodeURIComponent(mensagem);
-    window.location.href = `https://wa.me/5569981726850?text=${encodedMsg}`;
+    const encoded = encodeURIComponent(mensagem);
+    window.location.href = `https://wa.me/5569981726850?text=${encoded}`;
 }
 
-// Slideshow automático
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function nextSlide() {
