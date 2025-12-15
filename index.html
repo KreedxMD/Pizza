@@ -62,6 +62,11 @@ header {
     margin-bottom: 15px;
     font-size: 18px;
 }
+.preco-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* espaço entre preço e botão */
+}
 button {
     padding: 10px 15px;
     border: none;
@@ -112,9 +117,27 @@ h2 { margin-top: 0; color: #c62828; }
 <div class="container">
     <div class="card">
         <h2>🍴 Cardápio</h2>
-        <div class="item"><span>Meio Centro (50 unidades)</span><span>R$20 <button class="add" onclick="add('Meio Centro (50 unidades)',20)">+</button></span></div>
-        <div class="item"><span>Um Centro (100 unidades)</span><span>R$30 <button class="add" onclick="add('Um Centro (100 unidades)',30)">+</button></span></div>
-        <div class="item"><span>Combo 200 unidades + Refrigerante</span><span>R$65 <button class="add" onclick="add('Combo 200 unidades + Refrigerante',65)">+</button></span></div>
+        <div class="item">
+            <span>Meio Centro (50 unidades)</span>
+            <div class="preco-btn">
+                <span>R$20</span>
+                <button class="add" onclick="add('Meio Centro (50 unidades)',20)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Um Centro (100 unidades)</span>
+            <div class="preco-btn">
+                <span>R$30</span>
+                <button class="add" onclick="add('Um Centro (100 unidades)',30)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Combo 200 unidades + Refrigerante</span>
+            <div class="preco-btn">
+                <span>R$65</span>
+                <button class="add" onclick="add('Combo 200 unidades + Refrigerante',65)">+</button>
+            </div>
+        </div>
     </div>
 
     <div class="card">
