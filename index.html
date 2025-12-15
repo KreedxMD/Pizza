@@ -13,8 +13,6 @@ body {
     position: relative;
     overflow-x: hidden;
 }
-
-/* Slideshow de fundo */
 .slideshow-container {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -29,8 +27,6 @@ body {
     transition: opacity 1.5s ease-in-out;
 }
 .slide.active { opacity: 1; }
-
-/* Overlay */
 body::before {
     content: '';
     position: fixed;
@@ -38,7 +34,6 @@ body::before {
     background: rgba(0, 0, 0, 0.45);
     z-index: -1;
 }
-
 header {
     background: #c62828;
     color: #fff;
@@ -46,7 +41,6 @@ header {
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
-
 .container {
     padding: 15px;
     max-width: 900px;
@@ -54,7 +48,6 @@ header {
     position: relative;
     z-index: 1;
 }
-
 .card {
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
@@ -62,7 +55,6 @@ header {
     margin-bottom: 20px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
-
 .item {
     display: flex;
     justify-content: space-between;
@@ -70,7 +62,6 @@ header {
     margin-bottom: 15px;
     font-size: 18px;
 }
-
 button {
     padding: 10px 15px;
     border: none;
@@ -78,7 +69,6 @@ button {
     cursor: pointer;
     font-weight: bold;
 }
-
 .add {
     background: #2e7d32;
     color: #fff;
@@ -86,7 +76,6 @@ button {
     width: 40px;
     height: 40px;
 }
-
 .btn {
     background: #1565c0;
     color: #fff;
@@ -95,36 +84,12 @@ button {
     font-size: 18px;
     margin-top: 10px;
 }
-
 .total {
     font-size: 20px;
     font-weight: bold;
     text-align: right;
     margin: 15px 0;
 }
-
-/* Galeria no final */
-.gallery-container {
-    overflow: hidden;
-    border-radius: 12px;
-    margin-top: 20px;
-}
-.gallery {
-    display: flex;
-    width: 200%;
-    animation: slideGallery 25s linear infinite;
-}
-.gallery img {
-    width: 50%;
-    height: 350px;
-    object-fit: cover;
-}
-
-@keyframes slideGallery {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
 h2 { margin-top: 0; color: #c62828; }
 </style>
 </head>
@@ -147,9 +112,9 @@ h2 { margin-top: 0; color: #c62828; }
 <div class="container">
     <div class="card">
         <h2>🍴 Cardápio</h2>
-        <div class="item"><span>50 Salgadinhos</span><span>R$20 <button class="add" onclick="add('50 Salgadinhos',20)">+</button></span></div>
-        <div class="item"><span>100 Salgadinhos</span><span>R$50 <button class="add" onclick="add('100 Salgadinhos',50)">+</button></span></div>
-        <div class="item"><span>200 Salgadinhos + Coca</span><span>R$80 <button class="add" onclick="add('200 Salgadinhos + Coca',80)">+</button></span></div>
+        <div class="item"><span>Meio Centro (50 unidades)</span><span>R$20 <button class="add" onclick="add('Meio Centro (50 unidades)',20)">+</button></span></div>
+        <div class="item"><span>Um Centro (100 unidades)</span><span>R$30 <button class="add" onclick="add('Um Centro (100 unidades)',30)">+</button></span></div>
+        <div class="item"><span>Combo 200 unidades + Refrigerante</span><span>R$65 <button class="add" onclick="add('Combo 200 unidades + Refrigerante',65)">+</button></span></div>
     </div>
 
     <div class="card">
@@ -160,22 +125,6 @@ h2 { margin-top: 0; color: #c62828; }
         <div id="lista"></div>
         <p class="total">Total: R$ <span id="total">0</span>,00</p>
         <a href="checkout.html"><button class="btn">Finalizar Pedido ➜</button></a>
-    </div>
-
-    <div class="card">
-        <h2>😋 Nossos Salgados Deliciosos</h2>
-        <div class="gallery-container">
-            <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Salgados">
-                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix">
-                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa">
-                <img src="https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg" alt="Coxinha">
-                <img src="https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80" alt="Salgados">
-                <img src="https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg" alt="Mix">
-                <img src="https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg" alt="Festa">
-                <img src="https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg" alt="Coxinha">
-            </div>
-        </div>
     </div>
 </div>
 
@@ -211,7 +160,6 @@ function limparCarrinho(e) {
     update();
 }
 
-// Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function nextSlide() {
