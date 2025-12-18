@@ -90,7 +90,7 @@ function whatsapp() {
         return;
     }
 
-    const itens = cart.map((item, index) => `\( {index + 1}. \){item.nome}`).join('\n');
+    const itens = cart.map((item, index) => `${index + 1}. ${item.nome}`).join('\n');
 
     const mensagem = `Olá! Quero fazer um pedido:
 
@@ -108,7 +108,7 @@ Vou fazer o Pix na chave 106.833.531-95 e envio o comprovante aqui assim que pag
 Obrigado!`;
 
     const encoded = encodeURIComponent(mensagem);
-    // Novo número: 69981726850
+    // Número atualizado: 69981726850
     window.location.href = `https://wa.me/5569981726850?text=${encoded}`;
 }
 
