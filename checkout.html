@@ -26,7 +26,7 @@ button:hover { opacity: 0.9; }
 <div class="slideshow-container">
     <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1624306346884-1e83b83c16ca?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
     <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1630405090914-87b2d73c9c9e?ixlib=rb-4.0.3&auto=format&fit=crop&q=80');"></div>
-    <div class="slide" style="background-image: url('https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845522-stock-photo-mixed-brazilian-snack-on-the.jpg');"></div>
+    <div class="slide" style="background-image: url('https://st2.depositphotos.com/4366637/10184/i/450/depositphotos_101845102-stock-photo-mixed-brazilian-snack-on-the.jpg');"></div>
     <div class="slide" style="background-image: url('https://interlasermaquinas.com.br/wp-content/uploads/2022/12/salgados-para-festa-de-aniversario-1024x682.jpg');"></div>
     <div class="slide" style="background-image: url('https://media.istockphoto.com/id/1092130320/photo/mixed-brazilian-snack.jpg?s=612x612');"></div>
     <div class="slide" style="background-image: url('https://www.shutterstock.com/image-photo/coxinha-kibbeh-cheese-balls-typical-600nw-2329583759.jpg');"></div>
@@ -54,20 +54,24 @@ button:hover { opacity: 0.9; }
 </div>
 
 <script>
-// Leitura segura do carrinho
+// Leitura segura do carrinho e total
 let cart = [];
 let total = 0;
 
 const storedCart = localStorage.getItem('cart');
 if (storedCart) {
     try {
-        const parsed = JSON.parse(storedCart);
-        if (Array.isArray(parsed)) cart = parsed;
-    } catch (e) { cart = []; }
+        cart = JSON.parse(storedCart);
+        if (!Array.isArray(cart)) cart = [];
+    } catch (e) {
+        cart = [];
+    }
 }
 
 const storedTotal = localStorage.getItem('total');
-if (storedTotal) total = parseFloat(storedTotal) || 0;
+if (storedTotal) {
+    total = parseFloat(storedTotal) || 0;
+}
 
 document.getElementById('total').innerText = total;
 
@@ -85,12 +89,16 @@ function whatsapp() {
         return;
     }
 
-    if (cart.length === 0) {
+    if (cart.length === 0 || total === 0) {
         alert('⚠️ Adicione itens no carrinho primeiro!');
         return;
     }
 
-    const itens = cart.map((item, index) => `${index + 1}. ${item.nome}`).join('\n');
+    // Monta os itens com nome completo (ex: "Um Centro (100 unidades)")
+    let itensTexto = '';
+    for (let i = 0; i < cart.length; i++) {
+        itensTexto += `${i + 1}. ${cart[i].nome}\n`;
+    }
 
     const mensagem = `Olá! Quero fazer um pedido:
 
@@ -99,7 +107,7 @@ ${rua}
 ${numero}
 
 Pedido:
-${itens}
+${itensTexto}
 
 Total a pagar: R$ ${total},00
 
@@ -108,10 +116,10 @@ Vou fazer o Pix na chave 106.833.531-95 e envio o comprovante aqui assim que pag
 Obrigado!`;
 
     const encoded = encodeURIComponent(mensagem);
-    // Número atualizado: 69981726850
     window.location.href = `https://wa.me/5569981726850?text=${encoded}`;
 }
 
+// Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 function nextSlide() {
