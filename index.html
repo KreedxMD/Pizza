@@ -96,7 +96,6 @@ button {
     margin: 15px 0;
 }
 h2 { margin-top: 0; color: #c62828; }
-/* Novo destaque para atendimento 24h */
 .atendimento {
     background: #ffeb3b;
     color: #c62828;
@@ -127,8 +126,9 @@ h2 { margin-top: 0; color: #c62828; }
 </header>
 
 <div class="container">
+    <!-- Cardápio de Salgados -->
     <div class="card">
-        <h2>🍴 Cardápio</h2>
+        <h2>🍴 Cardápio de Salgados</h2>
         <div class="item">
             <span>Meio Centro (50 unidades)</span>
             <div class="preco-btn">
@@ -152,6 +152,33 @@ h2 { margin-top: 0; color: #c62828; }
         </div>
     </div>
 
+    <!-- Cardápio de Panetones (separado) -->
+    <div class="card">
+        <h2>🎄 Cardápio de Panetones</h2>
+        <div class="item">
+            <span>Panetone Simples</span>
+            <div class="preco-btn">
+                <span>R$30</span>
+                <button class="add" onclick="add('Panetone Simples',30)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Panetone Delicioso</span>
+            <div class="preco-btn">
+                <span>R$60</span>
+                <button class="add" onclick="add('Panetone Delicioso',60)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Combo Dois Panetones</span>
+            <div class="preco-btn">
+                <span>R$100</span>
+                <button class="add" onclick="add('Combo Dois Panetones',100)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrinho -->
     <div class="card">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <h2>🛒 Carrinho</h2>
