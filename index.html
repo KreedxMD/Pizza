@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centro de Salgado Deliciosos e Panetones</title>
+<title>Centro de Salgado Deliciosos</title>
 <style>
 body {
     font-family: Arial, sans-serif;
@@ -128,66 +128,19 @@ h2 { margin-top: 0; color: #c62828; }
 <div class="container">
     <!-- Salgados -->
     <div class="card">
-        <h2>🍴 Cardápio de Salgados</h2>
+        <h2>🍴 Salgados</h2>
         <div class="item">
-            <span>Meio Centro (50 unidades)</span>
+            <span>Centro de Salgadinho</span>
             <div class="preco-btn">
                 <span>R$20</span>
-                <button class="add" onclick="add('Meio Centro (50 unidades)',20)">+</button>
+                <button class="add" onclick="add('Centro de Salgadinho',20)">+</button>
             </div>
         </div>
         <div class="item">
-            <span>Um Centro (100 unidades)</span>
+            <span>Combo dos Salgadinhos</span>
             <div class="preco-btn">
-                <span>R$30</span>
-                <button class="add" onclick="add('Um Centro (100 unidades)',30)">+</button>
-            </div>
-        </div>
-        <div class="item">
-            <span>Combo 200 unidades + Refrigerante</span>
-            <div class="preco-btn">
-                <span>R$65</span>
-                <button class="add" onclick="add('Combo 200 unidades + Refrigerante',65)">+</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Panetones (sabores atualizados) -->
-    <div class="card">
-        <h2>🎄 Cardápio de Panetones</h2>
-        <div class="item">
-            <span>Panetone Nutella com Morango</span>
-            <div class="preco-btn">
-                <span>R$60</span>
-                <button class="add" onclick="add('Panetone Nutella com Morango',60)">+</button>
-            </div>
-        </div>
-        <div class="item">
-            <span>Panetone Chocolate com Morango</span>
-            <div class="preco-btn">
-                <span>R$65</span>
-                <button class="add" onclick="add('Panetone Chocolate com Morango',65)">+</button>
-            </div>
-        </div>
-        <div class="item">
-            <span>Panetone Leite Ninho com Coco</span>
-            <div class="preco-btn">
-                <span>R$60</span>
-                <button class="add" onclick="add('Panetone Leite Ninho com Coco',60)">+</button>
-            </div>
-        </div>
-        <div class="item">
-            <span>Panetone Chocolate com Maracujá</span>
-            <div class="preco-btn">
-                <span>R$65</span>
-                <button class="add" onclick="add('Panetone Chocolate com Maracujá',65)">+</button>
-            </div>
-        </div>
-        <div class="item">
-            <span>Panetone Leite Ninho com Coco e Morango</span>
-            <div class="preco-btn">
-                <span>R$65</span>
-                <button class="add" onclick="add('Panetone Leite Ninho com Coco e Morango',65)">+</button>
+                <span>R$35</span>
+                <button class="add" onclick="add('Combo dos Salgadinhos',35)">+</button>
             </div>
         </div>
     </div>
@@ -196,24 +149,76 @@ h2 { margin-top: 0; color: #c62828; }
     <div class="card">
         <h2>🥤 Refrigerantes (Adicionais - 2L)</h2>
         <div class="item">
-            <span>Refrigerante Dydyo</span>
+            <span>Dydyo</span>
             <div class="preco-btn">
                 <span>R$8</span>
                 <button class="add" onclick="add('Refrigerante Dydyo 2L',8)">+</button>
             </div>
         </div>
         <div class="item">
-            <span>Coca Cola</span>
+            <span>Fanta</span>
             <div class="preco-btn">
-                <span>R$15</span>
-                <button class="add" onclick="add('Refrigerante Coca Cola 2L',15)">+</button>
+                <span>R$10</span>
+                <button class="add" onclick="add('Refrigerante Fanta 2L',10)">+</button>
             </div>
         </div>
         <div class="item">
-            <span>Fanta</span>
+            <span>Coca Cola</span>
             <div class="preco-btn">
                 <span>R$12</span>
-                <button class="add" onclick="add('Refrigerante Fanta 2L',12)">+</button>
+                <button class="add" onclick="add('Refrigerante Coca Cola 2L',12)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trufas -->
+    <div class="card">
+        <h2>🍫 Trufas (unidade)</h2>
+        <div class="item">
+            <span>Trufa</span>
+            <div class="preco-btn">
+                <span>R$2</span>
+                <button class="add" onclick="add('Trufa',2)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sfihas -->
+    <div class="card">
+        <h2>🥙 Sfihas (unidade)</h2>
+        <div class="item">
+            <span>Carne</span>
+            <div class="preco-btn">
+                <span>R$1</span>
+                <button class="add" onclick="add('Sfiha de Carne',1)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Frango com Cheddar</span>
+            <div class="preco-btn">
+                <span>R$1</span>
+                <button class="add" onclick="add('Sfiha de Frango com Cheddar',1)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Calabresa</span>
+            <div class="preco-btn">
+                <span>R$1</span>
+                <button class="add" onclick="add('Sfiha de Calabresa',1)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Queijo com Calabresa</span>
+            <div class="preco-btn">
+                <span>R$1</span>
+                <button class="add" onclick="add('Sfiha de Queijo com Calabresa',1)">+</button>
+            </div>
+        </div>
+        <div class="item">
+            <span>Brigadeiro</span>
+            <div class="preco-btn">
+                <span>R$1</span>
+                <button class="add" onclick="add('Sfiha de Brigadeiro',1)">+</button>
             </div>
         </div>
     </div>
